@@ -1,6 +1,7 @@
 using Cabum.Produtos.Models;
 using Cabum.Produtos.Services;
 using Microsoft.AspNetCore.Mvc;
+using RabbitMQMensageiro;
 
 namespace Cabum.Produtos.Controllers;
 
@@ -17,11 +18,13 @@ public class ProdutosController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
+        var mensagemService = new MensagemService();
+
         var produtos = await _produtoService.GetAll();
-        if(produtos.Count == 0){
+        if(produtos.Count == 0)
             return NotFound();
-        }
-    return Ok(produtos);
+
+        return Ok("oi");
     }
 
     [HttpGet("{id}")]

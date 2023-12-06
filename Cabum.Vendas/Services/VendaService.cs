@@ -23,6 +23,10 @@ namespace Cabum.Vendas.Services
 
         public async Task<Venda> Create(Venda venda)
         {
+            //Verificar existencia
+            
+
+
             await _context.Vendas.AddAsync(venda);
             await _context.SaveChangesAsync();
             return venda;

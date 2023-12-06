@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "pIlz6xTjI2CMgYcW3bBFpFOjWuWa+4s45KWQckbXa30=",
-  "Source": "Cabum.Clientes",
-  "BasePath": "_content/Cabum.Clientes",
+  "Hash": "QJmE5T4CLL6xORveCTEWLroV7qa0viBkr4CGlJClXyA=",
+  "Source": "Cabum.Vendas",
+  "BasePath": "_content/Cabum.Vendas",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
