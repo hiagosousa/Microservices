@@ -35,8 +35,9 @@ function App() {
   const fetchClientes = async () => {
     setIsLoading(true);
     try {
+      setClientes([]);
       const response = await getClientes();
-      setClientes(response);
+      setClientes(response || []);
       console.log(response);
       setIsLoading(false);
     } catch (error) {
@@ -48,8 +49,9 @@ function App() {
   const fetchFuncionarios = async () => {
     setIsLoading(true);
     try {
+      setFuncionarios([]);
       const response = await getFuncionarios();
-      setFuncionarios(response);
+      setFuncionarios(response || []);
       console.log(response);
       setIsLoading(false);
     } catch (error) {
@@ -61,8 +63,9 @@ function App() {
   const fetchProdutos = async () => {
     setIsLoading(true);
     try {
+      setProdutos([]);
       const response = await getProdutos();
-      setProdutos(response);
+      setProdutos(response || []);
       console.log(response);
       setIsLoading(false);
     } catch (error) {
@@ -74,8 +77,9 @@ function App() {
   const fetchVendas = async () => {
     setIsLoading(true);
     try {
+      setVendas([]);
       const response = await getVendas();
-      setVendas(response);
+      setVendas(response || []);
       console.log(response);
       setIsLoading(false);
     } catch (error) {
@@ -86,7 +90,11 @@ function App() {
 
   return (
     <div className="flex flex-row bg-gray-400 w-screen h-screen p-4 justify-evenly items-center">
-      <div className="flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 border-green-600 justify-start items-center">
+      <div
+        className={`flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 ${
+          clientes.length > 0 ? "border-green-600" : "border-red-600"
+        } justify-start items-center`}
+      >
         <div className="flex flex-row w-full h-[15%] items-center justify-center">
           <span className="flex h-full w-[70%] text-gray-100 text-center items-center justify-center text-2xl">
             Clientes
@@ -102,7 +110,7 @@ function App() {
         <div className="flex flex-col w-[80%] h-[80%] overflow-y-scroll bg-gray-300 rounded-lg items-center">
           {!isLoading && clientes.length > 0 ? (
             <div className="flex flex-col w-[95%] h-[80%] space-y-2 mt-2">
-              {clientes.map((cliente) => (
+              {clientes?.map((cliente) => (
                 <div
                   key={cliente.id}
                   className="flex flex-col w-full bg-slate-600 items-center justify-center"
@@ -119,6 +127,12 @@ function App() {
                 </div>
               ))}
             </div>
+          ) : !isLoading && clientes.length == 0 ? (
+            <div className="bg-slate-600 mt-2">
+              <span className="flex h-full w-full text-gray-100 text-center items-center justify-center text-xl">
+                API indisponível, ou base sem dados
+              </span>
+            </div>
           ) : (
             <div>
               <Loading type="bars" color="#00BFFF"></Loading>
@@ -126,7 +140,11 @@ function App() {
           )}
         </div>
       </div>
-      <div className="flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 border-green-600 justify-start items-center">
+      <div
+        className={`flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 ${
+          funcionarios.length > 0 ? "border-green-600" : "border-red-600"
+        } justify-start items-center`}
+      >
         <div className="flex flex-row w-full h-[15%] items-center justify-center">
           <span className="flex h-full w-[70%] text-gray-100 text-center items-center justify-center text-2xl">
             Funcionários
@@ -141,7 +159,7 @@ function App() {
         <div className="flex flex-col w-[80%] h-[80%] overflow-y-scroll bg-gray-300 rounded-lg items-center">
           {!isLoading && funcionarios.length > 0 ? (
             <div className="flex flex-col w-[95%] h-[80%] space-y-2 mt-2">
-              {funcionarios.map((funcionario) => (
+              {funcionarios?.map((funcionario) => (
                 <div
                   key={funcionario.id}
                   className="flex flex-col w-full bg-slate-600 items-center justify-center"
@@ -158,6 +176,12 @@ function App() {
                 </div>
               ))}
             </div>
+          ) : !isLoading && funcionarios.length == 0 ? (
+            <div className="bg-slate-600 mt-2">
+              <span className="flex h-full w-full text-gray-100 text-center items-center justify-center text-xl">
+                API indisponível, ou base sem dados
+              </span>
+            </div>
           ) : (
             <div>
               <Loading type="bars" color="#00BFFF"></Loading>
@@ -165,7 +189,11 @@ function App() {
           )}
         </div>
       </div>
-      <div className="flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 border-green-600 justify-start items-center">
+      <div
+        className={`flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 ${
+          produtos.length > 0 ? "border-green-600" : "border-red-600"
+        } justify-start items-center`}
+      >
         <div className="flex flex-row w-full h-[15%] items-center justify-center">
           <span className="flex h-full w-[70%] text-gray-100 text-center items-center justify-center text-2xl">
             Produtos
@@ -180,7 +208,7 @@ function App() {
         <div className="flex flex-col w-[80%] h-[80%] overflow-y-scroll bg-gray-300 rounded-lg items-center">
           {!isLoading && produtos.length > 0 ? (
             <div className="flex flex-col w-[95%] h-[80%] space-y-2 mt-2">
-              {produtos.map((produto) => (
+              {produtos?.map((produto) => (
                 <div
                   key={produto.id}
                   className="flex flex-col w-full bg-slate-600 items-center justify-center"
@@ -200,6 +228,12 @@ function App() {
                 </div>
               ))}
             </div>
+          ) : !isLoading && produtos.length == 0 ? (
+            <div className="bg-slate-600 mt-2">
+              <span className="flex h-full w-full text-gray-100 text-center items-center justify-center text-xl">
+                API indisponível, ou base sem dados
+              </span>
+            </div>
           ) : (
             <div>
               <Loading type="bars" color="#00BFFF"></Loading>
@@ -207,7 +241,11 @@ function App() {
           )}
         </div>
       </div>
-      <div className="flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 border-green-600 justify-start items-center">
+      <div
+        className={`flex flex-col w-[22%] h-[80%] bg-slate-700 rounded-lg border-8 ${
+          vendas.length > 0 ? "border-green-600" : "border-red-600"
+        } justify-start items-center`}
+      >
         <div className="flex flex-row w-full h-[15%] items-center justify-center">
           <span className="flex h-full w-[70%] text-gray-100 text-center items-center justify-center text-2xl">
             Vendas
@@ -222,7 +260,7 @@ function App() {
         <div className="flex flex-col w-[80%] h-[80%] overflow-y-scroll bg-gray-300 rounded-lg items-center">
           {!isLoading && vendas.length > 0 ? (
             <div className="flex flex-col w-[95%] h-[80%] space-y-2 mt-2">
-              {vendas.map((venda) => (
+              {vendas?.map((venda) => (
                 <div
                   key={venda.id}
                   className="flex flex-col w-full bg-slate-600 items-center justify-center"
@@ -241,6 +279,12 @@ function App() {
                   </span>
                 </div>
               ))}
+            </div>
+          ) : !isLoading && vendas.length == 0 ? (
+            <div className="bg-slate-600 mt-2">
+              <span className="flex h-full w-full text-gray-100 text-center items-center justify-center text-xl">
+                API indisponível, ou base sem dados
+              </span>
             </div>
           ) : (
             <div>

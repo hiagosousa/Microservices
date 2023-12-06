@@ -132,3 +132,6 @@ C:\Users\adria\Documents\GitHub\Microservices\Cabum.Clientes\obj\Debug\net7.0\re
 C:\Users\adria\Documents\GitHub\Microservices\Cabum.Clientes\bin\Debug\net7.0\RabbitMQ.Client.dll
 C:\Users\adria\Documents\GitHub\Microservices\Cabum.Clientes\bin\Debug\net7.0\RabbitMQMensageiro.dll
 C:\Users\adria\Documents\GitHub\Microservices\Cabum.Clientes\bin\Debug\net7.0\RabbitMQMensageiro.pdb
+C:\Users\hiago\OneDrive\Documentos\GitHub\Microservices\Cabum.Clientes\bin\Debug\net7.0\RabbitMQ.Client.dll
+C:\Users\hiago\OneDrive\Documentos\GitHub\Microservices\Cabum.Clientes\bin\Debug\net7.0\RabbitMQMensageiro.dll
+C:\Users\hiago\OneDrive\Documentos\GitHub\Microservices\Cabum.Clientes\bin\Debug\net7.0\RabbitMQMensageiro.pdb

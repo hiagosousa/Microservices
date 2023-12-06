@@ -3,7 +3,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Cabum.Clientes.Migrations
+namespace Cabum.Vendas.Migrations
 {
     /// <inheritdoc />
     public partial class initial : Migration
@@ -22,6 +22,7 @@ namespace Cabum.Clientes.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     IdCliente = table.Column<int>(type: "int", nullable: false),
                     IdFuncionario = table.Column<int>(type: "int", nullable: false),
+                    IdProduto = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "longtext", nullable: false),
                     Quantidade = table.Column<int>(type: "int", nullable: false)
                 },

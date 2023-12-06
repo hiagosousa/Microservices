@@ -24,7 +24,7 @@ public class ProdutosController : ControllerBase
         if(produtos.Count == 0)
             return NotFound();
 
-        return Ok("oi");
+        return Ok(produtos);
     }
 
     [HttpGet("{id}")]

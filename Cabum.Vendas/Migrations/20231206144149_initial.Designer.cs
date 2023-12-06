@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Cabum.Clientes.Migrations
+namespace Cabum.Vendas.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20231205204449_initial")]
+    [Migration("20231206144149_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -31,6 +31,9 @@ namespace Cabum.Clientes.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("IdFuncionario")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdProduto")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")

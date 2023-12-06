@@ -132,3 +132,6 @@ C:\Users\adria\Documents\GitHub\Microservices\Cabum.Produtos\obj\Debug\net7.0\re
 C:\Users\adria\Documents\GitHub\Microservices\Cabum.Produtos\obj\Debug\net7.0\Cabum.Produtos.pdb
 C:\Users\adria\Documents\GitHub\Microservices\Cabum.Produtos\obj\Debug\net7.0\Cabum.Produtos.genruntimeconfig.cache
 C:\Users\adria\Documents\GitHub\Microservices\Cabum.Produtos\obj\Debug\net7.0\ref\Cabum.Produtos.dll
+C:\Users\hiago\OneDrive\Documentos\GitHub\Microservices\Cabum.Produtos\bin\Debug\net7.0\RabbitMQ.Client.dll
+C:\Users\hiago\OneDrive\Documentos\GitHub\Microservices\Cabum.Produtos\bin\Debug\net7.0\RabbitMQMensageiro.dll
+C:\Users\hiago\OneDrive\Documentos\GitHub\Microservices\Cabum.Produtos\bin\Debug\net7.0\RabbitMQMensageiro.pdb
