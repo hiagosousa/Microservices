@@ -5,6 +5,7 @@ namespace Cabum.Vendas.Models
         public int Id { get; set; }
         public int IdCliente { get; set; }
         public int IdFuncionario { get; set; }
+        public int IdProduto { get; set; }
         public string Nome { get; set; }
         public int Quantidade { get; set; }
     }

@@ -1,12 +1,12 @@
 export interface ICliente {
   id: number;
   nome: string;
-  CPF: string;
+  cpf: string;
 }
 
 export interface sendCliente {
   nome: string;
-  CPF: string;
+  cpf: string;
 }
 
 export interface IClientes {

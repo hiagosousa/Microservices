@@ -1,12 +1,12 @@
 export interface IFuncionario {
   id: number;
   nome: string;
-  CPF: string;
+  cpf: string;
 }
 
 export interface sendFuncionario {
   nome: string;
-  CPF: string;
+  cpf: string;
 }
 
 export interface IFuncionarios {

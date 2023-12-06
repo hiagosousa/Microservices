@@ -14,7 +14,20 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")!));
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+
+// Configurar CORS para permitir todas as origens
+app.UseCors(options => options
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
+// Configurar roteamento, se necessário
+
+app.MapSwagger();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
