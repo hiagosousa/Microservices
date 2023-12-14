@@ -1,4 +1,5 @@
 using Cabum.Clientes.Models;
+using Cabum.Vendas.Mensageria;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cabum.Clientes.Services
@@ -7,9 +8,12 @@ namespace Cabum.Clientes.Services
     {
         private readonly ApplicationDBContext _context;
 
-        public ClienteService(ApplicationDBContext context)
+        private readonly RabbitMQPublisherService<Cliente> _rabbitMQPublisherService;
+
+        public ClienteService(ApplicationDBContext context, RabbitMQPublisherService<Cliente> rabbitMQPublisherService)
         {
             _context = context;
+            _rabbitMQPublisherService = rabbitMQPublisherService;
         }
 
         public async Task<List<Cliente>> GetAll()
@@ -25,6 +29,9 @@ namespace Cabum.Clientes.Services
         {
             await _context.Clientes.AddAsync(cliente);
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(cliente, "clientes");
+
             return cliente;
         }
 

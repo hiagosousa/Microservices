@@ -1,4 +1,6 @@
 using Cabum.Vendas;
+using Cabum.Vendas.Mensageria;
+using Cabum.Vendas.Models;
 using Cabum.Vendas.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")!));
 builder.Services.AddScoped<IVendaService, VendaService>();
+
+builder.Services.AddScoped<RabbitMQPublisherService<Venda>>();
+builder.Services.AddHostedService<RabbitMQListenerService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

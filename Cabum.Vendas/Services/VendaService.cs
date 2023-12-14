@@ -1,3 +1,4 @@
+using Cabum.Vendas.Mensageria;
 using Cabum.Vendas.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,10 +7,12 @@ namespace Cabum.Vendas.Services
     public class VendaService : IVendaService
     {
         private readonly ApplicationDBContext _context;
+        private readonly RabbitMQPublisherService<Venda> _rabbitMQPublisherService;
 
-        public VendaService(ApplicationDBContext context)
+        public VendaService(ApplicationDBContext context, RabbitMQPublisherService<Venda> rabbitMQPublisherService)
         {
             _context = context;
+            _rabbitMQPublisherService = rabbitMQPublisherService;
         }
 
         public async Task<List<Venda>> GetAll()
@@ -23,12 +26,11 @@ namespace Cabum.Vendas.Services
 
         public async Task<Venda> Create(Venda venda)
         {
-            //Verificar existencia
-            
-
-
             await _context.Vendas.AddAsync(venda);
             await _context.SaveChangesAsync();
+
+            // _rabbitMQPublisherService.PublicarMensagem(venda, "vendas");
+
             return venda;
         }
 

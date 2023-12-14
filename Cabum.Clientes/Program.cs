@@ -1,18 +1,20 @@
 using Cabum.Clientes;
+using Cabum.Clientes.Models;
 using Cabum.Clientes.Services;
+using Cabum.Vendas.Mensageria;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")!));
 builder.Services.AddScoped<IClienteService, ClienteService>();
+
+builder.Services.AddScoped<RabbitMQPublisherService<Cliente>>();
+builder.Services.AddHostedService<RabbitMQListenerService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
