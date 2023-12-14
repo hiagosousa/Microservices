@@ -1,5 +1,5 @@
-namespace Cabum.Vendas.Models
-{
+namespace Cabum.Clientes.Models;
+
     public class Venda
     {
         public int Id { get; set; }
@@ -9,4 +9,3 @@ namespace Cabum.Vendas.Models
         public int Quantidade { get; set; }
         public double Valor { get; set; }
     }
-}

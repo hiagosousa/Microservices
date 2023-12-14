@@ -39,7 +39,6 @@ namespace Cabum.Vendas.Services
             {
                 throw new Exception("Venda não encontrado");
             }
-            vendaNoDb.Nome = venda.Nome;
             vendaNoDb.Quantidade = venda.Quantidade;
             vendaNoDb.IdCliente = venda.IdCliente;
             vendaNoDb.IdFuncionario = venda.IdFuncionario;
