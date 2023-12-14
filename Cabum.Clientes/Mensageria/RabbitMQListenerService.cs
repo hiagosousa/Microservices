@@ -1,4 +1,5 @@
 using System.Text;
+using Cabum.Clientes;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -19,9 +20,9 @@ public class RabbitMQListenerService : BackgroundService
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
-            // ConfigurarFila(channel, "clientes", ProcessarMensagemClientes);
-            // ConfigurarFila(channel, "funcionarios", ProcessarMensagemFuncionarios);
-            // ConfigurarFila(channel, "produtos", ProcessarMensagemProdutos);
+            ConfigurarFila(channel, "criacaoVendas", ProcessarMensagemCriacaoVendas);
+            ConfigurarFila(channel, "atualizacaoVendas", ProcessarMensagemAtualizacaoVendas);
+            ConfigurarFila(channel, "exclusaoVendas", ProcessarMensagemExclusaoVendas);
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }
@@ -47,35 +48,60 @@ public class RabbitMQListenerService : BackgroundService
         channel.BasicConsume(queue: fila, autoAck: true, consumer: consumer);
     }
 
-    private void ProcessarMensagemClientes(string mensagem)
+    private void ProcessarMensagemCriacaoVendas(string mensagem)
     {
         using (var scope = _services.CreateScope())
         {
             var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
 
+            var venda = JsonSerializer.Deserialize<Venda>(mensagem);
 
-            Console.WriteLine($"Mensagem de Clientes Recebida: {mensagem}");
+            if(venda != null)
+            {
+                context.Vendas.Add(venda);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Criacao de Vendas Recebida: {mensagem}");
         }
     }
 
-    private void ProcessarMensagemFuncionarios(string mensagem)
+    private void ProcessarMensagemAtualizacaoVendas(string mensagem)
     {
         using (var scope = _services.CreateScope())
         {
             var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
 
+            var venda = JsonSerializer.Deserialize<Venda>(mensagem);
 
-            Console.WriteLine($"Mensagem de Funcionarios Recebida: {mensagem}");
+            if(venda != null)
+            {
+                context.Vendas.Update(venda);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Atualizacao de Vendas Recebida: {mensagem}");
         }
     }
 
-    private void ProcessarMensagemProdutos(string mensagem)
+    private void ProcessarMensagemExclusaoVendas(string mensagem)
     {
         using (var scope = _services.CreateScope())
         {
             var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
 
-            Console.WriteLine($"Mensagem de Produtos Recebida: {mensagem}");
+            var venda = JsonSerializer.Deserialize<Venda>(mensagem);
+
+            if(venda != null)
+            {
+                context.Vendas.Remove(venda);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Exclusao de Vendas Recebida: {mensagem}");
         }
     }
 }

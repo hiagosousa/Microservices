@@ -22,9 +22,18 @@ public class RabbitMQListenerService : BackgroundService
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
-            ConfigurarFila(channel, "clientes", ProcessarMensagemClientes);
-            ConfigurarFila(channel, "funcionarios", ProcessarMensagemFuncionarios);
-            ConfigurarFila(channel, "produtos", ProcessarMensagemProdutos);
+            ConfigurarFila(channel, "criacaoClientes", ProcessarMensagemCriacaoClientes);
+            ConfigurarFila(channel, "atualizacaoClientes", ProcessarMensagemAtualizacaoClientes);
+            ConfigurarFila(channel, "exclusaoClientes", ProcessarMensagemExclusaoClientes);
+
+
+            ConfigurarFila(channel, "criacaoFuncionarios", ProcessarMensagemCriacaoFuncionarios);
+            ConfigurarFila(channel, "atualizacaoFuncionarios", ProcessarMensagemAtualizacaoFuncionarios);
+            ConfigurarFila(channel, "exclusaoFuncionarios", ProcessarMensagemExclusaoFuncionarios);
+
+            ConfigurarFila(channel, "criacaoProdutos", ProcessarMensagemCriacaoProdutos);
+            ConfigurarFila(channel, "atualizacaoProdutos", ProcessarMensagemAtualizacaoProdutos);
+            ConfigurarFila(channel, "exclusaoProdutos", ProcessarMensagemExclusaoProdutos);
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }
@@ -50,7 +59,7 @@ public class RabbitMQListenerService : BackgroundService
         channel.BasicConsume(queue: fila, autoAck: true, consumer: consumer);
     }
 
-    private void ProcessarMensagemClientes(string mensagem)
+    private void ProcessarMensagemCriacaoClientes(string mensagem)
     {
         using (var scope = _services.CreateScope())
         {
@@ -65,11 +74,49 @@ public class RabbitMQListenerService : BackgroundService
                 context.SaveChanges();
             }
 
-            Console.WriteLine($"Mensagem de Clientes Recebida: {mensagem}");
+            Console.WriteLine($"Mensagem Criação de Clientes Recebida: {mensagem}");
         }
     }
 
-    private void ProcessarMensagemFuncionarios(string mensagem)
+    private void ProcessarMensagemAtualizacaoClientes(string mensagem)
+    {
+        using (var scope = _services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
+
+            var cliente = JsonSerializer.Deserialize<Cliente>(mensagem);
+
+            if(cliente != null)
+            {
+                context.Clientes.Update(cliente);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Atualização de Clientes Recebida: {mensagem}");
+        }
+    }
+
+    private void ProcessarMensagemExclusaoClientes(string mensagem)
+    {
+        using (var scope = _services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
+
+            var cliente = JsonSerializer.Deserialize<Cliente>(mensagem);
+
+            if(cliente != null)
+            {
+                context.Clientes.Remove(cliente);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Exclusao de Clientes Recebida: {mensagem}");
+        }
+    }
+
+    private void ProcessarMensagemCriacaoFuncionarios(string mensagem)
     {
         using (var scope = _services.CreateScope())
         {
@@ -84,11 +131,49 @@ public class RabbitMQListenerService : BackgroundService
                 context.SaveChanges();
             }
 
-            Console.WriteLine($"Mensagem de Funcionarios Recebida: {mensagem}");
+            Console.WriteLine($"Mensagem Criação de Funcionarios Recebida: {mensagem}");
         }
     }
 
-    private void ProcessarMensagemProdutos(string mensagem)
+    private void ProcessarMensagemAtualizacaoFuncionarios(string mensagem)
+    {
+        using (var scope = _services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
+
+            var funcionario = JsonSerializer.Deserialize<Funcionario>(mensagem);
+
+            if(funcionario != null)
+            {
+                context.Funcionarios.Update(funcionario);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Atualização de Funcionarios Recebida: {mensagem}");
+        }
+    }
+
+    private void ProcessarMensagemExclusaoFuncionarios(string mensagem)
+    {
+        using (var scope = _services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
+
+            var funcionario = JsonSerializer.Deserialize<Funcionario>(mensagem);
+
+            if(funcionario != null)
+            {
+                context.Funcionarios.Remove(funcionario);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Exclusao de Funcionarios Recebida: {mensagem}");
+        }
+    }
+
+    private void ProcessarMensagemCriacaoProdutos(string mensagem)
     {
         using (var scope = _services.CreateScope())
         {
@@ -103,7 +188,45 @@ public class RabbitMQListenerService : BackgroundService
                 context.SaveChanges();
             }
 
-            Console.WriteLine($"Mensagem de Produtos Recebida: {mensagem}");
+            Console.WriteLine($"Mensagem Criação de Produtos Recebida: {mensagem}");
+        }
+    }
+
+    private void ProcessarMensagemAtualizacaoProdutos(string mensagem)
+    {
+        using (var scope = _services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
+
+            var produto = JsonSerializer.Deserialize<Produto>(mensagem);
+
+            if(produto != null)
+            {
+                context.Produtos.Update(produto);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Atualização de Produtos Recebida: {mensagem}");
+        }
+    }
+
+    private void ProcessarMensagemExclusaoProdutos(string mensagem)
+    {
+        using (var scope = _services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
+
+            var produto = JsonSerializer.Deserialize<Produto>(mensagem);
+
+            if(produto != null)
+            {
+                context.Produtos.Remove(produto);
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"Mensagem Exclusao de Produtos Recebida: {mensagem}");
         }
     }
 }
