@@ -7,9 +7,12 @@ namespace Cabum.Funcionarios.Services
     {
         private readonly ApplicationDBContext _context;
 
-        public FuncionarioService(ApplicationDBContext context)
+        private readonly RabbitMQPublisherService<Funcionario> _rabbitMQPublisherService;
+
+        public FuncionarioService(ApplicationDBContext context, RabbitMQPublisherService<Funcionario> rabbitMQPublisherService)
         {
             _context = context;
+            _rabbitMQPublisherService = rabbitMQPublisherService;
         }
 
         public async Task<List<Funcionario>> GetAll()
@@ -25,6 +28,9 @@ namespace Cabum.Funcionarios.Services
         {
             await _context.Funcionarios.AddAsync(funcionario);
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(funcionario, "criacaoFuncionarios");
+
             return funcionario;
         }
 
@@ -38,6 +44,9 @@ namespace Cabum.Funcionarios.Services
             funcionarioNoDb.Nome = funcionario.Nome;
             funcionarioNoDb.CPF = funcionario.CPF;
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(funcionario, "atualizacaoFuncionarios");
+
             return funcionarioNoDb;
         }
 
@@ -50,6 +59,9 @@ namespace Cabum.Funcionarios.Services
             }
             _context.Remove(funcionarioNoDb);
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(funcionario, "exclusaoFuncionarios");
+
             return funcionarioNoDb;
         }
 

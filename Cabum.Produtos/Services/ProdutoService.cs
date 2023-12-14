@@ -6,7 +6,13 @@ namespace Cabum.Produtos.Services
     public class ProdutoService : IProdutoService
     {
         private readonly ApplicationDBContext _context;
-        public ProdutoService(ApplicationDBContext context) {_context = context;}
+        private readonly RabbitMQPublisherService<Produto> _rabbitMQPublisherService;
+
+        public ProdutoService(ApplicationDBContext context, RabbitMQPublisherService<Produto> rabbitMQPublisherService)
+        {
+            _context = context;
+            _rabbitMQPublisherService = rabbitMQPublisherService;
+        }
 
         public async Task<List<Produto>> GetAll()
         {
@@ -22,6 +28,9 @@ namespace Cabum.Produtos.Services
         {
             await _context.Produtos.AddAsync(produto);
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(produto, "criacaoProdutos");
+
             return produto;
         } 
 
@@ -36,6 +45,9 @@ namespace Cabum.Produtos.Services
             produtoNoDb.Quantidade = produto.Quantidade;
             produtoNoDb.Nome = produto.Nome;
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(funcionario, "atualizacaoProdutos");
+
             return produtoNoDb;
         } 
 
@@ -48,6 +60,9 @@ namespace Cabum.Produtos.Services
 
             _context.Remove(produtoNoDb);
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(funcionario, "exclusaoProdutos");
+
             return produtoNoDb;
         }
         

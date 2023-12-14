@@ -30,7 +30,7 @@ namespace Cabum.Clientes.Services
             await _context.Clientes.AddAsync(cliente);
             await _context.SaveChangesAsync();
 
-            _rabbitMQPublisherService.PublicarMensagem(cliente, "clientes");
+            _rabbitMQPublisherService.PublicarMensagem(cliente, "criacaoClientes");
 
             return cliente;
         }
@@ -45,6 +45,9 @@ namespace Cabum.Clientes.Services
             clienteNoDb.Nome = cliente.Nome;
             clienteNoDb.CPF = cliente.CPF;
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(cliente, "atualizacaoClientes");
+
             return clienteNoDb;
         }
 
@@ -55,8 +58,12 @@ namespace Cabum.Clientes.Services
             {
                 throw new Exception("Cliente não encontrado");
             }
+
             _context.Remove(clienteNoDb);
             await _context.SaveChangesAsync();
+
+            _rabbitMQPublisherService.PublicarMensagem(cliente, "exclusaoClientes");
+
             return clienteNoDb;
         }
 
