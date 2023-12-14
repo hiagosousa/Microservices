@@ -1,6 +1,8 @@
 using Cabum.Funcionarios;
+using Cabum.Funcionarios.Models;
 using Cabum.Funcionarios.Services;
 using Microsoft.EntityFrameworkCore;
+using Cabum.Funcionarios.Mensageria;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")!));
 builder.Services.AddScoped<IFuncionarioService, FuncionarioService>();
+
+builder.Services.AddScoped<RabbitMQPublisherService<Funcionario>>();
+builder.Services.AddHostedService<RabbitMQListenerService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

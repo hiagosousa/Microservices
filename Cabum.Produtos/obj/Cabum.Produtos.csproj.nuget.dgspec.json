@@ -1,38 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj": {}
+    "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj": {
+    "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj",
+        "projectUniqueName": "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj",
         "projectName": "Cabum.Produtos",
-        "projectPath": "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj",
-        "packagesPath": "C:\\Users\\adria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\Cabum.Produtos\\obj\\",
+        "projectPath": "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\Cabum.Produtos\\Cabum.Produtos.csproj",
+        "packagesPath": "C:\\Users\\hiago\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\Cabum.Produtos\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\adria\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\hiago\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.305\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj": {
-                "projectPath": "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj"
+              "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj": {
+                "projectPath": "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj"
               }
             }
           }
@@ -81,24 +77,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -107,31 +85,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj": {
+    "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj",
+        "projectUniqueName": "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj",
         "projectName": "RabbitMQMensageiro",
-        "projectPath": "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj",
-        "packagesPath": "C:\\Users\\adria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adria\\Documents\\GitHub\\Microservices\\RabbitMQMensageiro\\obj\\",
+        "projectPath": "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\RabbitMQMensageiro\\RabbitMQMensageiro.csproj",
+        "packagesPath": "C:\\Users\\hiago\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hiago\\OneDrive\\Documentos\\GitHub\\Microservices\\RabbitMQMensageiro\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\adria\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\hiago\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -166,26 +139,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
         }
       }
     }
