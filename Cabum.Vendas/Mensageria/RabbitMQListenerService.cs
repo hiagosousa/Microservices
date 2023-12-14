@@ -1,4 +1,7 @@
 using System.Text;
+using System.Text.Json;
+using Cabum.Vendas;
+using Cabum.Vendas.Models;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -52,7 +55,15 @@ public class RabbitMQListenerService : BackgroundService
         using (var scope = _services.CreateScope())
         {
             var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
 
+            var cliente = JsonSerializer.Deserialize<Cliente>(mensagem);
+
+            if(cliente != null)
+            {
+                context.Clientes.Add(cliente);
+                context.SaveChanges();
+            }
 
             Console.WriteLine($"Mensagem de Clientes Recebida: {mensagem}");
         }
@@ -63,7 +74,15 @@ public class RabbitMQListenerService : BackgroundService
         using (var scope = _services.CreateScope())
         {
             var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
 
+            var funcionario = JsonSerializer.Deserialize<Funcionario>(mensagem);
+
+            if(funcionario != null)
+            {
+                context.Funcionarios.Add(funcionario);
+                context.SaveChanges();
+            }
 
             Console.WriteLine($"Mensagem de Funcionarios Recebida: {mensagem}");
         }
@@ -74,6 +93,15 @@ public class RabbitMQListenerService : BackgroundService
         using (var scope = _services.CreateScope())
         {
             var serviceProvider = scope.ServiceProvider;
+            var context = serviceProvider.GetRequiredService<ApplicationDBContext>();
+
+            var produto = JsonSerializer.Deserialize<Produto>(mensagem);
+
+            if(produto != null)
+            {
+                context.Produtos.Add(produto);
+                context.SaveChanges();
+            }
 
             Console.WriteLine($"Mensagem de Produtos Recebida: {mensagem}");
         }
