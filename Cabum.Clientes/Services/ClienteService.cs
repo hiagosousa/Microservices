@@ -62,7 +62,7 @@ namespace Cabum.Clientes.Services
             _context.Remove(clienteNoDb);
             await _context.SaveChangesAsync();
 
-            _rabbitMQPublisherService.PublicarMensagem(cliente, "exclusaoClientes");
+            _rabbitMQPublisherService.PublicarMensagem(clienteNoDb, "exclusaoClientes");
 
             return clienteNoDb;
         }

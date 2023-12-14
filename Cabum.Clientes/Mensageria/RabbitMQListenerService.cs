@@ -1,5 +1,7 @@
 using System.Text;
+using System.Text.Json;
 using Cabum.Clientes;
+using Cabum.Clientes.Models;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 

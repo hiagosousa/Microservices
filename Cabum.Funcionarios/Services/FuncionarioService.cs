@@ -1,3 +1,4 @@
+using Cabum.Funcionarios.Mensageria;
 using Cabum.Funcionarios.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -60,7 +61,7 @@ namespace Cabum.Funcionarios.Services
             _context.Remove(funcionarioNoDb);
             await _context.SaveChangesAsync();
 
-            _rabbitMQPublisherService.PublicarMensagem(funcionario, "exclusaoFuncionarios");
+            _rabbitMQPublisherService.PublicarMensagem(funcionarioNoDb, "exclusaoFuncionarios");
 
             return funcionarioNoDb;
         }

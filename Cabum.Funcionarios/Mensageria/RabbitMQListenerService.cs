@@ -22,9 +22,9 @@ public class RabbitMQListenerService : BackgroundService
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
-            ConfigurarFila(channel, "criarvendas", ProcessarMensagemCriacaoVendas);
-            ConfigurarFila(channel, "atualizarvendas", ProcessarMensagemAtualizacaoVendas);
-            ConfigurarFila(channel, "excluirvendas", ProcessarMensagemExclusaoVendas);
+            ConfigurarFila(channel, "criacaoVendas", ProcessarMensagemCriacaoVendas);
+            ConfigurarFila(channel, "atualizacaoVendas", ProcessarMensagemAtualizacaoVendas);
+            ConfigurarFila(channel, "exclusaoVendas", ProcessarMensagemExclusaoVendas);
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }

@@ -1,3 +1,4 @@
+using Cabum.Produtos.Mensageria;
 using Cabum.Produtos.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,7 +47,7 @@ namespace Cabum.Produtos.Services
             produtoNoDb.Nome = produto.Nome;
             await _context.SaveChangesAsync();
 
-            _rabbitMQPublisherService.PublicarMensagem(funcionario, "atualizacaoProdutos");
+            _rabbitMQPublisherService.PublicarMensagem(produto, "atualizacaoProdutos");
 
             return produtoNoDb;
         } 
@@ -61,7 +62,7 @@ namespace Cabum.Produtos.Services
             _context.Remove(produtoNoDb);
             await _context.SaveChangesAsync();
 
-            _rabbitMQPublisherService.PublicarMensagem(funcionario, "exclusaoProdutos");
+            _rabbitMQPublisherService.PublicarMensagem(produtoNoDb, "exclusaoProdutos");
 
             return produtoNoDb;
         }
