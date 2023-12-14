@@ -29,7 +29,7 @@ namespace Cabum.Vendas.Services
             await _context.Vendas.AddAsync(venda);
             await _context.SaveChangesAsync();
 
-            _rabbitMQPublisherService.PublicarMensagem(venda, "criacaoVendas");
+            // _rabbitMQPublisherService.PublicarMensagem(venda, "vendas");
 
             return venda;
         }
@@ -45,9 +45,6 @@ namespace Cabum.Vendas.Services
             vendaNoDb.IdCliente = venda.IdCliente;
             vendaNoDb.IdFuncionario = venda.IdFuncionario;
             await _context.SaveChangesAsync();
-
-            _rabbitMQPublisherService.PublicarMensagem(venda, "atualizacaoVendas");
-
             return vendaNoDb;
         }
 
@@ -60,9 +57,6 @@ namespace Cabum.Vendas.Services
             }
             _context.Remove(vendaNoDb);
             await _context.SaveChangesAsync();
-
-            _rabbitMQPublisherService.PublicarMensagem(venda, "exclusaoVendas");
-
             return vendaNoDb;
         }
 
